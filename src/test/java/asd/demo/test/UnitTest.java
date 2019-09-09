@@ -17,6 +17,7 @@ import org.junit.Test;
  * @author George
  */
 public class UnitTest {
+    /*
     private static MongoDBConnector mdb;
        
     public UnitTest() {  }
@@ -46,4 +47,5 @@ public class UnitTest {
     public static void tearDownClass() {
         System.out.print("\n<-- Unit Test Finished : ");        
     }     
+*/
 }

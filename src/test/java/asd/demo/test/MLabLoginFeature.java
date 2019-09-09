@@ -16,7 +16,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class MLabLoginFeature {
-
+/*
     WebDriver driver;
 
     @Given("^I am on mLab login page$")
@@ -46,4 +46,5 @@ public class MLabLoginFeature {
     public void i_should_see_red(String arg1) throws Throwable {
         System.out.println("mLab connection unsuccessful!");
     }    
+*/
 }
