@@ -19,7 +19,7 @@
 
         <div class="container">
             <div class="row">
-                <h> All products test</h>
+                <h> All products</h>
             </div>
 
             <div class="row">
