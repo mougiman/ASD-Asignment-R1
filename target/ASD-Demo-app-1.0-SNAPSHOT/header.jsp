@@ -15,7 +15,7 @@
     </header>
 
 
-      <div class="title">Sell n Buy / Barter-Mart</div>
+      <div class="title">Sell n Buy / Barter-Mart test</div>
     <% User user = (User) session.getAttribute("userLogin"); %>                                 
     <div class ="navbar">
         <span class="leftalign">
