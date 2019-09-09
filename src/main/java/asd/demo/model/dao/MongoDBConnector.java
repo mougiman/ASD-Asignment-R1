@@ -159,4 +159,18 @@ public class MongoDBConnector {
         //items.add(item2);
         return items;
     }
+
+    public Item getitem(String id) {
+        MongoDatabase mongoDatabase = mongoClient.getDatabase("ASD");
+        MongoCollection collection = mongoDatabase.getCollection("Product");
+        List<Document> documents = (List<Document>) collection.find().into(new ArrayList<Document>());
+        Item item = new Item();
+        for (Document document : documents) {
+            String itemId = "" + document.get("id");
+            if (itemId.equals(id)) {
+                item = new Item("" + document.get("id"), "" + document.get("name"), "" + document.get("datelisted"), Integer.parseInt("" + document.get("quantity")), Double.parseDouble("" + document.get("price")), "" + document.get("desc"), "" + document.get("category"), "" + document.get("sellerId"), "" + document.get("expdate"), "" + document.get("CusID"));
+            }
+        }
+        return item;
+    }
 }

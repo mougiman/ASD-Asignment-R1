@@ -5,7 +5,6 @@
 --%>
 
 <%@page import="asd.demo.model.dao.MongoDBConnector"%>
-<%@page import="asd.demo.model.dao.DBManager"%>
 <%@page import="java.util.Random"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -83,7 +82,7 @@
                 </tr>                
                 <tr>
                     <td>
-                        <p>Pricing:</p>
+                        <p>Price:</p>
                     </td>
                     <td>
                         <input type="text" name="itemPrice">
@@ -91,22 +90,13 @@
                 </tr>
                 <tr>
                     <td>
-                        <p>Color:</p>
+                        <p>Image:</p>
                     </td>
                     <td>
-                        <input type="text" name="itemColor">
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <p>Year Made:</p>
-                    </td>
-                    <td>
-                        <input type="number" name="itemYearMade">
+                        <input type="file" name="img" />
                     </td>
                 </tr>
                 <tr><td></td><td>
-                        <!--If all necessary forms are filled out then let user submit -->
                         <input type="submit" value="List Item">
                     </td></tr>
             </table>
@@ -124,6 +114,7 @@
             String itemID = "" + rand.nextInt(999999999);
             String itemColor = request.getParameter("itemColor");
             String itemYearMade = request.getParameter("itemYearMade");
+            String img = request.getParameter("img");
 
             connector.addItem(itemID, itemName, itemDateListed, itemQuantity, itemPrice, itemDesc, itemCategory, itemSellerID, "buyerid");
         %>
