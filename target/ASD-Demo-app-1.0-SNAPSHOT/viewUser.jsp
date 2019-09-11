@@ -12,37 +12,49 @@
 <%@page import="asd.demo.model.*" import="java.sql.*"%>
 <!DOCTYPE html>
 <html>
- <head>
+    <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>User Profile</title>
         <link rel="stylesheet" href="css/ASDStyle.css">
     </head>
-                    <jsp:include page="header.jsp"/>
-        
-        <body>
-          <%
+    <jsp:include page="header.jsp"/>
 
-        DBManager manager = (DBManager) session.getAttribute("manager");
-        
+    <body>
+        <%
 
-        User user = (User)session.getAttribute("userView");
-    %> 
+            DBManager manager = (DBManager) session.getAttribute("manager");
+
+            User user = (User) session.getAttribute("userView");
+        %> 
     <body >
         <h1>Account Profile</h1>        
         <form action="editUser.jsp" method="POST">
             <table>
-                     <tr><td>Full name</td><td><input type="text" name="name" size="25" value=" Calvin<% //=user.getName()%>"></td></tr>
+                <tr><td>Full name</td><td><input type="text" name="name" size="25" value=" Calvin<% //=user.getName()%>"></td></tr>
                 <tr><td>Email</td><td><input type="text" name="email" size="25" value=" sean3404@uts.com<%//=user.getEmail()%>"></td></tr>
                 <tr><td>Phone</td><td><input type="text" name="phone" size="25" value=" 04221191111<%//=user.getPhone()%>"></td></tr>
-               
-                        <button class="button" type="button" onclick="location.href = 'listings.jsp'" >Back</button>
-                        <button class="button" type="button" onclick="location.href = 'salesHistory.jsp'" > See other items </button>
-                      
-                    </td>
+
+                <button class="button" type="button" onclick="location.href = 'listings.jsp'" >Back</button>
+                <button class="button" type="button" onclick="location.href = 'salesHistory.jsp'" > See other items </button>
+
+                </td>
                 </tr>
             </table>
         </form>
-
+        <div>
+            <h2>User Ratings</h2>
+            <a href="review.jsp">Leave a Rating</a>
+            <%  for(int i = 0; i < 3; i++){
+            %>
+            <div>
+                <h3>Great User</h3>
+                <p>by anonymous</p>
+                <p>This user sells premium products for a good price</p>
+            </div>
+            <%
+                }
+            %>
+        </div>
     </body>
 </html>    
-            
+

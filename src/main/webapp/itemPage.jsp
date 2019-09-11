@@ -61,16 +61,35 @@
                 </div>
             </div>
         </div>
-        <div class="col">
-            <div class="userBox">
-                <div> Listed User:<a href="view_user.jsp">Calvin</a></div> <!-- Will link to user's profile -->
-                <div> Listed Date: 15/08/2019 </div>
+
+        <div>
+            <h2>Item Reviews</h2>
+            <a href="review.jsp">Leave a Review</a>
+            <%  for (int i = 0; i < 3; i++) {
+            %>
+            <div>
+                <h3>Great Product</h3>
+                <p>by anonymous</p>
+                <p>This puzzle set is great for kids to play with, its challenging enough to make you think, but hard enough that kids well spend some time of their phones completing this thing :)</p>
             </div>
+            <%
+                }
+            %>
         </div>
-        <%
-            }
-        %>
+
     </div>
+    <div class="col">
+        <div class="userBox">
+
+            <div> Listed User: <a href="viewUser.jsp">Calvin</a> </div> <!-- Will link to user's profile -->
+
+            <div> Listed Date: 15/08/2019 </div>
+        </div>
+    </div>
+    <%
+        }
+    %>
+</div>
 </div>
 </body>
 </html>
