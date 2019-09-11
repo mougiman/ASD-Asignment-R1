@@ -14,14 +14,11 @@
             // DBManager manager = (DBManager) session.getAttribute("manager");
             String itemName = request.getParameter("itemName");
         %>
-
         <jsp:include page="header.jsp"/>
-
         <div class="container">
             <div class="row">
                 <h> All products</h>
             </div>
-
             <div class="row">
                 <div class="itemList">
                     <%
@@ -42,8 +39,6 @@
                 </div>        
             </div>
         </div> 
-
         <jsp:include page="logout.jsp"/>
-
     </body>
 </html>
