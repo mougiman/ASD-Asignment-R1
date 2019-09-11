@@ -37,7 +37,7 @@
 
                 <div class="pure-control-group">
                     <label for="">Category:</label>
-                    <input id="" type="password" placeholder="" name="itemCategory" required>
+                    <input id="" type="text" placeholder="" name="itemCategory" required>
                 </div>
                 <div class="pure-control-group">
                     <label for="">Condition:</label>

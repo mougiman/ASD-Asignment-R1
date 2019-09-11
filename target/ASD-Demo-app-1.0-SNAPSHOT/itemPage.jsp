@@ -3,6 +3,7 @@
     Created on : 16/08/2019, 5:48:55 PM
     Author     : Calvin
 --%>
+<%@page import="java.util.ArrayList"%>
 <%@page import="asd.demo.model.dao.MongoDBConnector"%>
 <%@page import="asd.demo.model.*"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -15,14 +16,12 @@
     <body>  
         <jsp:include page="header.jsp"/>    
         <div class="row">
-
             <%
                 String id = request.getParameter("id");
                 MongoDBConnector connector = new MongoDBConnector();
                 Item item = connector.getitem(id);
                 if (item != null) {
             %>
-
             <div class="mainBox">
                 <div class="col">
                     <h><%=item.getName()%></h>
@@ -46,50 +45,31 @@
 
             <div class="mainBox">
                 <div class="col">
-                    <h>1000 Piece Puzzle</h> <!--- Will link to item info --->
-                    <p></p>
-                    <img src="puzzle-img.jpg" style="width:500px; height:400px;"/>
-                    <h1> <u>Item Info</u> </h1>
-                    <div> Description </div>
-                    <div> A puzzle box with 1000 pieces. </div>
-                    <div> Category: Toys/Games </div>
-                    <div> Price: $10.00 </div>
-                    <div> Condition: New </div>
-                    <div> Color: Brown </div>
-                    <div> Year Made: 2018 </div>
-                    <button type="button"> Buy Now! </button>
+                    <h>No Item Found!</h> <!--- Will link to item info --->
                 </div>
             </div>
         </div>
-
+        <%
+            }
+        %>
         <div>
             <h2>Item Reviews</h2>
-            <a href="review.jsp">Leave a Review</a>
-            <%  for (int i = 0; i < 3; i++) {
+            <form method="post" action="review.jsp">
+                <input type="HIDDEN" name="id" value="<%=item.getID()%>">
+                <input class="" type="submit" value="Leave a Review">
+            </form> 
+            <%
+                ArrayList<Review> reviews = connector.getItemReviews(id);
+                for (Review review : reviews) {
             %>
             <div>
-                <h3>Great Product</h3>
-                <p>by anonymous</p>
-                <p>This puzzle set is great for kids to play with, its challenging enough to make you think, but hard enough that kids well spend some time of their phones completing this thing :)</p>
+                <h3><%=review.getTitle()%></h3>
+                <p>by <%=review.getUserID()%></p>
+                <p><%=review.getDesc()%></p>
             </div>
             <%
                 }
             %>
         </div>
-
-    </div>
-    <div class="col">
-        <div class="userBox">
-
-            <div> Listed User: <a href="viewUser.jsp">Calvin</a> </div> <!-- Will link to user's profile -->
-
-            <div> Listed Date: 15/08/2019 </div>
-        </div>
-    </div>
-    <%
-        }
-    %>
-</div>
-</div>
-</body>
+    </body>
 </html>

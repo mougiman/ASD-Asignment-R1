@@ -5,7 +5,6 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@page import="asd.demo.model.dao.DBManager"%>
 <%@page import="asd.demo.model.dao.*"%>
 <%@page import="java.util.*"%>
 <%@page import="asd.demo.controller.*"%>
@@ -21,9 +20,8 @@
 
     <body>
         <%
-
-            DBManager manager = (DBManager) session.getAttribute("manager");
-
+            MongoDBConnector connector = new MongoDBConnector();
+            String id = request.getParameter("id");
             User user = (User) session.getAttribute("userView");
         %> 
     <body >
@@ -44,12 +42,15 @@
         <div>
             <h2>User Ratings</h2>
             <a href="review.jsp">Leave a Rating</a>
-            <%  for(int i = 0; i < 3; i++){
+            <%
+                ArrayList<Rating> ratings = connector.getUserRatings(id);
+                for (Rating rating : ratings) {
             %>
             <div>
-                <h3>Great User</h3>
-                <p>by anonymous</p>
-                <p>This user sells premium products for a good price</p>
+                <h3><%=rating.getTitle()%></h3>
+                <h5><%=rating.getScore()%>/5</h5>
+                <p>by <%=rating.getUserID()%></p>
+                <p><%=rating.getDesc()%></p>
             </div>
             <%
                 }

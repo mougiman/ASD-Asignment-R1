@@ -12,7 +12,7 @@
     <body>        
         <%  // This is code in relation to the local database
             // DBManager manager = (DBManager) session.getAttribute("manager");
-            String itemName = request.getParameter("itemName");
+            //String itemName = request.getParameter("itemName");
         %>
         <jsp:include page="header.jsp"/>
         <div class="container">
