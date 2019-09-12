@@ -9,7 +9,6 @@ public class Users implements Serializable{
 
     public Users() {
     }
-
     public ArrayList<User> getList() {
         return list;
     }

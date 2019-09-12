@@ -10,11 +10,12 @@ import java.util.*;
  *
  * @author Calvin
  */
-public class ItemList implements Serializable{
+public class ItemList implements Serializable {
     
     private ArrayList<Item> list = new ArrayList<>();
     
-    public ItemList(){}
+    public ItemList(){
+    }
     
     public ArrayList<Item> getList(){
         return list;
@@ -41,4 +42,5 @@ public class ItemList implements Serializable{
             System.out.print("Item does not exist");
         }
     }
+    
 }

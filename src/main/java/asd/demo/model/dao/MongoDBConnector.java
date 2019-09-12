@@ -1,128 +1,102 @@
-/*
- * Author: Georges Bou Ghantous
- *
- * This class provides the methods to establish connection between ASD-Demo-app
- * and MongoDBLab cloud Database. The data is saved dynamically on mLab cloud database as
- * as JSON format.
- */
-package asd.demo.model.dao;
 
-import java.net.UnknownHostException;
-import com.mongodb.client.MongoCollection;
+package asd.demo.model.dao;
 import org.bson.Document;
-import java.util.*;
 import asd.demo.model.*;
-import com.mongodb.DBObject;
 import com.mongodb.MongoClient;
 import com.mongodb.MongoClientURI;
-import com.mongodb.client.MongoCursor;
 import com.mongodb.client.MongoDatabase;
-import static com.mongodb.client.model.Filters.and;
-import static com.mongodb.client.model.Filters.eq;
+import com.mongodb.client.MongoCollection;
 
 public class MongoDBConnector {
+    MongoDatabase shopDB = getMongoDB();
+    MongoCollection<Document> dbItems = shopDB.getCollection("Item");
+    MongoCollection<Document> users = shopDB.getCollection("Users");
 
-    String uri = "mongodb://weize:Holyshit1.@asd-assignment-shard-00-00-5im26.gcp.mongodb.net:27017,asd-assignment-shard-00-01-5im26.gcp.mongodb.net:27017,asd-assignment-shard-00-02-5im26.gcp.mongodb.net:27017/test?ssl=true&replicaSet=ASD-Assignment-shard-0&authSource=admin&retryWrites=true&w=majority";
-    MongoClientURI clientURI = new MongoClientURI(uri);
-    MongoClient mongoClient = new MongoClient(clientURI);
-    
-    public void addAucItem(String id, String name, String datelisted, int quantity, Double price, String desc, String category, String sellerId, String expdate, String CusID) {
-        MongoDatabase mongoDatabase = mongoClient.getDatabase("ASD");
-        MongoCollection collection = mongoDatabase.getCollection("Product");
-        Document document = new Document("id", id).
-                append("name", name).
-                append("datelisted", datelisted).
-                append("quantity", quantity).
-                append("price", price).
-                append("desc", desc).
-                append("category", category).
-                append("sellerId", sellerId).
-                append("expdate", expdate).
-                append("CusID", CusID);
+    public MongoDatabase getMongoDB(){
+        MongoClientURI uri = new MongoClientURI("mongodb://weize:Holyshit1.@asd-assignment-shard-00-00-5im26.gcp.mongodb.net:27017,asd-assignment-shard-00-01-5im26.gcp.mongodb.net:27017,asd-assignment-shard-00-02-5im26.gcp.mongodb.net:27017/test?ssl=true&replicaSet=ASD-Assignment-shard-0&authSource=admin&retryWrites=true&w=majority");
+        MongoClient client = new MongoClient(uri);
+        MongoDatabase db = client.getDatabase("ASD");
+        return db;
+    }
 
-        collection.insertOne(document);
+    public int add(int a, int b) {
+        return a + b;
+    }
+
+    public int subtract(int a, int b) {
+        return a - b;
     }
     
-    public void addItem(String id, String name, String datelisted, int quantity, Double price, String desc, String category, String sellerId, String CusID) {
-        MongoDatabase mongoDatabase = mongoClient.getDatabase("ASD");
-        MongoCollection collection = mongoDatabase.getCollection("Product");
-        Document document = new Document("id", id).
-                append("name", name).
-                append("datelisted", datelisted).
-                append("quantity", quantity).
-                append("price", price).
-                append("desc", desc).
-                append("category", category).
-                append("sellerId", sellerId).
-                append("CusID", CusID);
-        collection.insertOne(document);
-    }
-
-    public void addReview(String id, String ItemID, String UserID, String Desc, String Title, String DateListed) {
-        MongoDatabase mongoDatabase = mongoClient.getDatabase("ASD");
-        MongoCollection collection = mongoDatabase.getCollection("Review");
-        Document document = new Document("id", id).
-                append("UserID", UserID).
-                append("Desc", Desc).
-                append("Title", Title).
-                append("DateListed", DateListed).
-                append("ItemID", ItemID).
-        collection.insertOne(document);
-    }
-
-    public ArrayList<Item> getItemList() {
-        MongoDatabase mongoDatabase = mongoClient.getDatabase("ASD");
-        MongoCollection collection = mongoDatabase.getCollection("Product");
-        List<Document> documents = (List<Document>) collection.find().into(new ArrayList<Document>());
-        ArrayList<Item> items = new ArrayList<Item>();
-        for (Document document : documents) {
-            Item item = new Item("" + document.get("id"), "" + document.get("name"), "" + document.get("datelisted"), Integer.parseInt("" + document.get("quantity")), Double.parseDouble("" + document.get("price")), "" + document.get("desc"), "" + document.get("category"), "" + document.get("sellerId"), "" + document.get("expdate"), "" + document.get("CusID"));
-            items.add(item);
-        }
+    public ItemList getItemList(){
+        ItemList items = new ItemList();
+        for (Document doc : dbItems.find()) {
+            Item item = new Item((String) doc.get("id"), (String) doc.get("name"), 
+                    (String) doc.get("dateListed"), (int) doc.get("stock"), 
+                    (int) doc.get("soldQuantity"), (double) doc.get("price"), 
+                    (String) doc.get("desc"), (String) doc.get("category"), 
+                    (String) doc.get("yearMade"), (String) doc.get("sellerID"), 
+                    (String) doc.get("condition"), (String) doc.get("color"), 
+                    (String) doc.get("image"));
+            items.addItem(item);
+        }   
         return items;
     }
+    
+    public ItemList searchItemList(String query) {
+        ItemList searchList = new ItemList();
+        for (Document doc : dbItems.find()) {
+            String name = (String)(doc.get("name"));
+            if(name.contains(query)){
+                Item item = new Item((String) doc.get("id"), (String) doc.get("name"), 
+                        (String) doc.get("dateListed"), (int) doc.get("stock"), (int) doc.get("soldQuantity"), 
+                        (double) doc.get("price"), (String) doc.get("desc"), (String) doc.get("category"), 
+                        (String) doc.get("yearMade"), (String) doc.get("sellerID"), 
+                        (String) doc.get("condition"), (String) doc.get("color"), (String) doc.get("image"));
+                searchList.addItem(item);
+            }
+        }  
+        return searchList;
+    }
+    
+    public ItemList searchCategory(String query) {
+        ItemList searchList = new ItemList();
+        for (Document doc : dbItems.find()) {
+            String name = (String)(doc.get("category"));
+            if(name.contains(query)){
+                Item item = new Item((String) doc.get("id"), (String) doc.get("name"), 
+                        (String) doc.get("dateListed"), (int) doc.get("stock"), (int) doc.get("soldQuantity"), 
+                        (double) doc.get("price"), (String) doc.get("desc"), (String) doc.get("category"), 
+                        (String) doc.get("yearMade"), (String) doc.get("sellerID"), 
+                        (String) doc.get("condition"), (String) doc.get("color"), (String) doc.get("image"));
+                searchList.addItem(item);
+            }
+        }
+        return searchList;
+    }
+    
+    public Item getItem(String ID){
+        for (Document doc : dbItems.find()) {
+            String id = (String)(doc.get("id"));
+            System.out.print(id + "------" + ID);
+            if(id.equals(ID)){
+                return (new Item((String) doc.get("id"), (String) doc.get("name"), (String) doc.get("dateListed"), 
+                        (int) doc.get("stock"), (int) doc.get("soldQuantity"), (double) doc.get("price"), 
+                        (String) doc.get("desc"), (String) doc.get("category"), (String) doc.get("yearMade"),
+                        (String) doc.get("sellerID"), (String) doc.get("condition"), (String) doc.get("color"), (String) doc.get("image")));
+            }
+        }
+        return null;
+    }
+    
+    public Users getUserList(){
+        Users userList = new Users();
+        for (Document doc : users.find()){
+            
+        }
+        return userList;
+    }
+    
 
-    public Item getitem(String id) {
-        MongoDatabase mongoDatabase = mongoClient.getDatabase("ASD");
-        MongoCollection collection = mongoDatabase.getCollection("Product");
-        List<Document> documents = (List<Document>) collection.find().into(new ArrayList<Document>());
-        Item item = new Item();
-        for (Document document : documents) {
-            String itemId = "" + document.get("id");
-            if (itemId.equals(id)) {
-                item = new Item("" + document.get("id"), "" + document.get("name"), "" + document.get("datelisted"), Integer.parseInt("" + document.get("quantity")), Double.parseDouble("" + document.get("price")), "" + document.get("desc"), "" + document.get("category"), "" + document.get("sellerId"), "" + document.get("expdate"), "" + document.get("CusID"));
-            }
-        }
-        return item;
-    }
-    
-    public ArrayList<Review> getItemReviews(String id) {
-        MongoDatabase mongoDatabase = mongoClient.getDatabase("ASD");
-        MongoCollection collection = mongoDatabase.getCollection("Review");
-        List<Document> documents = (List<Document>) collection.find().into(new ArrayList<Document>());
-        ArrayList<Review> reviews = new ArrayList<Review>();
-        for (Document document : documents) {
-            String itemId = "" + document.get("itemid");
-            if (itemId.equals(id)) {
-                Review review = new Review("" + document.get("id"), "" + document.get("itemid"), "" + document.get("userid"), "" + document.get("desc"), "" + document.get("title"), "" + document.get("datelisted"));
-                reviews.add(review);
-            }
-        }
-        return reviews;
-    }
-    
-    public ArrayList<Rating> getUserRatings(String id) {
-        MongoDatabase mongoDatabase = mongoClient.getDatabase("ASD");
-        MongoCollection collection = mongoDatabase.getCollection("Rating");
-        List<Document> documents = (List<Document>) collection.find().into(new ArrayList<Document>());
-        ArrayList<Rating> ratings = new ArrayList<Rating>();
-        for (Document document : documents) {
-            String sellerId = "" + document.get("sellerid");
-            if (sellerId.equals(id)) {
-                Rating rating = new Rating("" + document.get("id"), "" + document.get("itemid"), "" + document.get("userid"), "" + document.get("desc"), "" + document.get("title"), "" + document.get("datelisted"), ""+document.get("score"));
-                ratings.add(rating);
-            }
-        }
-        return ratings;
-    }
 }
+
+

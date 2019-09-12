@@ -68,24 +68,27 @@ p{
     width: 100%;
     text-align: center;
     background-color: lightblue;
-    justify-content: space-between;
     
 }
 
+a{
+   text-decoration: none; 
+}
 .row{
-   padding-top: 20px;
-    background-color: lightblue;
+   padding: 20px 0px 0px 20px;
+   background-color: lightblue;
+   display:flex;
 }
 .itemCard{
     text-align: center;
-    width:200px;
+    width: 200px;
     height: 250px;
     margin: 20px 20px;
     background-color: pink;
 }
 .mainBox{
-    width: 60%;
-    line-height: 25px; 
+    width: 100%;
+    line-height: 30px; 
 }
 .userBox{
     width: 30%;
@@ -97,5 +100,55 @@ p{
 }
 
 .col{
-    padding: 20px 40px 10px 50px;
+    width:100%;
+    text-align: center;
+    padding: 20px 40px 10px 0px;
+    background-color: lightblue;
+}
+
+a.button{
+    padding: 20px 30px 20px 30px;
+    margin: 20px;
+
+    
+    text-decoration: none;
+    color: initial;
+}
+
+table, th, td{
+    border:2px solid black;
+    padding: 5px;
+}
+.itemCard > .imageContainer{
+    width:200px;
+    height:200px; 
+    background-color: white;
+    white-space: nowrap;
+}
+
+.helper{
+    display: inline-block;
+    height:100%;
+    vertical-align: middle;    
+}
+.itemCard> .imageContainer > img{
+    width:180px;
+    vertical-align: middle;
+    align:left;
+    background-color: white;        
+}
+
+.col > img{
+    width:180px;
+    vertical-align: middle;
+    align:left;
+    background-color: white;
+}
+
+hr{
+    width:200px;
+    height:2px;
+    border-width:0;
+    color:black;
+    background-color:gray
 }

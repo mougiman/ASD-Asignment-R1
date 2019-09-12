@@ -4,7 +4,7 @@
     Author     : Calvin
 --%>
 <%@page import="java.util.ArrayList"%>
-<%@page import="asd.demo.model.dao.MongoDBConnector"%>
+<%@page import="java.util.Enumeration"%>
 <%@page import="asd.demo.model.*"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -14,62 +14,38 @@
         <link rel="stylesheet" href="css/ASDStyle.css">
     </head>
     <body>  
-        <jsp:include page="header.jsp"/>    
+        <jsp:include page="header.jsp"/>
+        
+        <% 
+            Item item = (Item) request.getAttribute("item");
+            String error = (String) request.getAttribute("err");
+        %>  
         <div class="row">
-            <%
-                String id = request.getParameter("id");
-                MongoDBConnector connector = new MongoDBConnector();
-                Item item = connector.getitem(id);
-                if (item != null) {
-            %>
-            <div class="mainBox">
-                <div class="col">
-                    <h><%=item.getName()%></h>
-                    <p></p>
-                    <p>Description </p>
-                    <p> <%=item.getDescription()%> </p>
-                    <p> Category: <%=item.getCategory()%> </p>
-                    <p> Price: <%=item.getPrice()%> </p>
-                    <button type="button"> Buy Now! </button>
-                </div>
+        <div class="mainBox">
+            <% if(error.length() > 0) { %>
+            <%=error%>
+            <%} else { %>
+            <div class="col">
+                <h><%=item.getName()%></h>
+                <p></p>
+                <img src="<%=item.getImage()%>" style="width:500px; height:400px;"/>
+                <div> Description </div>
+                    <div> <%=item.getDescription()%> </div>
+                    <hr>
+                    <div> Category: <%=item.getCategory()%> </div>
+                    <div> Price: <%=item.getPrice()%> </div>
+                    <div> Condition: <%=item.getCondition()%> </div>
+                    <div> Color: <%=item.getColor()%> </div>
+                    <div> Year Made: <%=item.getYearMade()%> </div>
+                    <button type="button"> Buy Now! 
             </div>
             <div class="col">
                 <div class="userBox">
-                    <div> Listed User: <%=item.getSellerID()%> </div>
+                    <div> Listed User: <a href="salesHistory.jsp"> <%=item.getSellerID()%> </a></div>
                     <div> Listed Date: <%=item.getDateListed()%> </div>
                 </div>
             </div>
-            <%
-            } else {
-            %>
-
-            <div class="mainBox">
-                <div class="col">
-                    <h>No Item Found!</h> <!--- Will link to item info --->
-                </div>
-            </div>
-        </div>
-        <%
-            }
-        %>
-        <div>
-            <h2>Item Reviews</h2>
-            <form method="post" action="review.jsp">
-                <input type="HIDDEN" name="id" value="<%=item.getID()%>">
-                <input class="" type="submit" value="Leave a Review">
-            </form> 
-            <%
-                ArrayList<Review> reviews = connector.getItemReviews(id);
-                for (Review review : reviews) {
-            %>
-            <div>
-                <h3><%=review.getTitle()%></h3>
-                <p>by <%=review.getUserID()%></p>
-                <p><%=review.getDesc()%></p>
-            </div>
-            <%
-                }
-            %>
+            <% } %>
         </div>
     </body>
 </html>
