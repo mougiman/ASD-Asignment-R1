@@ -10,12 +10,14 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Logout</title>
-          <meta name="viewport" content="width=device-width">
+ 
     </head>
     <body>
-         <form method="link" action="index.jsp">
-        <body>
-            <input type="submit" value="Logout">
-         </form>
+       <%=session.getAttribute("userEmail")%><br/>
+        
+         <%
+             response.setHeader("refresh","2;URL=index.jsp");
+             session.invalidate();
+             %>
     </body>
 </html>
