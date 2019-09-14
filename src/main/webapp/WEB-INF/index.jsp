@@ -14,10 +14,10 @@
         <%  // This is code in relation to the local database
             ArrayList<Item> items = (ArrayList<Item>) request.getAttribute("itemList");
             String error = (String) request.getAttribute("error");
+            String searched = (String) request.getAttribute("searched");
         %>
         
         <jsp:include page="../header.jsp"/>
-        
         <div class="container">
             <div class="row">
                 <h> All products </h>
@@ -42,21 +42,29 @@
             <div class="row">
                 <div class="itemList">
                     
-                    <% if(error.length() > 0){ %>
+                    <% if(!error.equals("")){ %>
                         <%=error%>
-                    <% } %>
-                    <%for (int i = 0; i < items.size(); i++) { Item item = items.get(i);%>
-                    <a href="./item?id=<%=item.getID()%>" class="itemCard">
-                        <input type="hidden" name="itemID" value="<%=item.getID()%>"/>
-                        <div class="imageContainer">
-                            <span class="helper"></span>
-                            <img src="<%=item.getImage()%>"/>
+                    <% } else {%>
+                        
+                        <% if(!searched.equals((""))) { %>
+                        <div class="row">
+                        <p> Searched for:</p>
+                        <h1><%=searched%></h1>  
                         </div>
-                        <br>
-                         <%=item.getName()%>
-                         $<%=item.getPrice()%>
-                     </a>
-                    <% } %>
+                        <% } %>
+                        <div class="row">
+                            <%for (int i = 0; i < items.size(); i++) { Item item = items.get(i);%>
+                            <a href="./item?id=<%=item.getID()%>" class="itemCard">
+                                <div class="imageContainer">
+                                    <span class="helper"></span>
+                                    <img src="<%=item.getImage()%>"/>
+                                </div>
+                                <br>
+                                 <%=item.getName()%>
+                                 $<%=item.getPrice()%>
+                            </a>
+                        </div>
+                    <% }} %>
                 </div>        
             </div>
         </div> 

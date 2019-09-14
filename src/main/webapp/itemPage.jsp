@@ -34,13 +34,12 @@
                     <hr>
                     <div> Category: <%=item.getCategory()%> </div>
                     <div> Price: <%=item.getPrice()%> </div>
-                    <div> Condition: <%=item.getCondition()%> </div>
-                    <div> Color: <%=item.getColor()%> </div>
-                    <div> Year Made: <%=item.getYearMade()%> </div>
-                    <button type="button"> Buy Now! 
+                    <div> Expiration Date: <%=item.getExpDate()%></div>
+                    <button type="button"> Buy Now! </button>
             </div>
             <div class="col">
                 <div class="userBox">
+                    <div> User Info <div>
                     <div> Listed User: <a href="salesHistory.jsp"> <%=item.getSellerID()%> </a></div>
                     <div> Listed Date: <%=item.getDateListed()%> </div>
                 </div>

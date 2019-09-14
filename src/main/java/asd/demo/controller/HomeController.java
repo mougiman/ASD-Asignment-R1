@@ -17,15 +17,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Enumeration;
-import javax.servlet.http.HttpSession;
-     
 
 /**
  *
  * @author Calvin
  */
-
 
 @WebServlet("/home")
 public class HomeController extends HttpServlet {
@@ -36,11 +32,14 @@ public class HomeController extends HttpServlet {
         ArrayList<Item> items = new ArrayList<Item>();
         String query = request.getParameter("searchText");
         String searchType = request.getParameter("searchType");
+        request.setAttribute("searched", "");
         String err = "";
         if(query != null && query.length() > 0 && request.getParameter("search") != null){
             if(searchType.equals("item")){
+                query = query.toLowerCase();
                 ItemList item = connector.searchItemList(query); //Returns items that has name similar to query
                 items = item.getList();
+                request.setAttribute("searched", query);
                 if(items.isEmpty()){
                    err = ("There are no items that match the name \"" + query + "\"");
                    request.setAttribute("error", err);                   
@@ -49,6 +48,7 @@ public class HomeController extends HttpServlet {
             else if(searchType.equals("category")){
                 ItemList item = connector.searchCategory(query); //Returns items that has name similar to query
                 items = item.getList();
+                request.setAttribute("searched", query);
                 if(items.isEmpty()){
                    err = ("There are no items that match the category \"" + query + "\"");
                    request.setAttribute("error", err);    
@@ -71,7 +71,6 @@ public class HomeController extends HttpServlet {
             Collections.sort(items,new CustomComparator());
             Collections.reverse(items);
         }
-
         request.setAttribute("error", err);       
         request.setAttribute("itemList", items);
         request.getRequestDispatcher("WEB-INF/index.jsp").forward(request, response);
