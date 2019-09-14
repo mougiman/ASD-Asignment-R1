@@ -14,6 +14,20 @@
             // DBManager manager = (DBManager) session.getAttribute("manager");
             //String itemName = request.getParameter("itemName");
         %>
+         <%if(session.getAttribute("userEmail")!=null)
+        {
+            %>
+                   <h3>Welcome<%=session.getAttribute("userEmail")%></h3>
+                   <a href="logout.jsp">Logout</a>
+                   <%
+                       }
+else
+{
+%>
+<a href="login.jsp">Login</a>
+<%
+    }
+%>
         <jsp:include page="header.jsp"/>
         <div class="container">
             <div class="row">
@@ -39,6 +53,6 @@
                 </div>        
             </div>
         </div> 
-        <jsp:include page="logout.jsp"/>
+      
     </body>
 </html>
