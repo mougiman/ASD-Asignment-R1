@@ -78,7 +78,7 @@ public class MongoDBConnector {
                         (String) doc.get("dateListed"), (int) doc.get("stock"), 
                         (double) doc.get("price"), (String) doc.get("desc"), 
                         (String) doc.get("category"), (String) doc.get("sellerID"), 
-                        (String) doc.get("expdate"), (String) doc.get("image"));
+                        (String) doc.get("expdate"),(boolean) doc.get("ifAuc") ,(String) doc.get("image"));
                items.addItem(item);
         }   
         return items;
@@ -94,7 +94,7 @@ public class MongoDBConnector {
                         (String) doc.get("dateListed"), (int) doc.get("stock"), 
                         (double) doc.get("price"), (String) doc.get("desc"), 
                         (String) doc.get("category"), (String) doc.get("sellerID"), 
-                        (String) doc.get("expdate"), (String) doc.get("image"));
+                        (String) doc.get("expdate"),(boolean) doc.get("ifAuc"), (String) doc.get("image"));
                 searchList.addItem(item);
             }
         }  
@@ -109,7 +109,7 @@ public class MongoDBConnector {
                 Item item = new Item((String) doc.get("id"), (String) doc.get("name"), 
                         (String) doc.get("dateListed"), (int) doc.get("stock"), (double) doc.get("price"), 
                         (String) doc.get("desc"), (String) doc.get("category"), (String) doc.get("sellerID"), 
-                        (String) doc.get("expdate"), (String) doc.get("image"));
+                        (String) doc.get("expdate"), (boolean) doc.get("ifAuc"), (String) doc.get("image"));
                 searchList.addItem(item);
             }
         }
@@ -124,7 +124,7 @@ public class MongoDBConnector {
                 return (new Item((String) doc.get("id"), (String) doc.get("name"), (String) doc.get("dateListed"), 
                         (int) doc.get("stock"), (double) doc.get("price"), 
                         (String) doc.get("desc"), (String) doc.get("category"),
-                        (String) doc.get("sellerID"), (String) doc.get("expdate"), (String) doc.get("image")));
+                        (String) doc.get("sellerID"), (String) doc.get("expdate"), (boolean) doc.get("ifAuc"), (String) doc.get("image")));
             }
         }
         return null;
