@@ -37,6 +37,14 @@
         <servlet-name>allUsersController</servlet-name>
         <url-pattern>/all</url-pattern>
     </servlet-mapping>
+	    <servlet>
+        <servlet-name>sellerController</servlet-name>
+        <servlet-class>asd.demo.controller.sellerServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>sellerController</servlet-name>
+        <url-pattern>/profile/*</url-pattern>
+    </servlet-mapping>
 	
     
     <welcome-file-list>
