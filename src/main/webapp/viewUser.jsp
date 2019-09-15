@@ -1,6 +1,6 @@
 <%-- 
     Document   : view_user
-    Created on : Aug 15, 2019, 5:33:46 PM
+    Created on : Sep 16, 2019, 5:33:46 PM
     Author     : Sean
 --%>
 
@@ -67,7 +67,6 @@
     </body>
 </html>    
 
-    
  
 
 
