@@ -130,7 +130,7 @@ public class MongoDBConnector {
         return null;
     }
     
-     public User getUser(String ID){
+    public User getUser(String ID){
         for (Document doc : users.find()) {
                 String id = (String)(doc.get("id"));
             System.out.print(id + "------" + ID);
@@ -140,6 +140,7 @@ public class MongoDBConnector {
         }
         return null;
     }
+    
     
     public Users getUserList(){
         Users userList = new Users();
