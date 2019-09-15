@@ -1,6 +1,6 @@
 <%-- 
     Document   : itemPage
-    Created on : 16/08/2019, 5:48:55 PM
+    Created on : 16/09/2019, 5:48:55 PM
     Author     : Calvin
 --%>
 <%@page import="java.util.ArrayList"%>
@@ -40,7 +40,7 @@
             <div class="col">
                 <div class="userBox">
                     <div><u> User Info </u><div>
-                    <div> Listed User: <a href="salesHistory.jsp"> <%=item.getSellerID()%> </a></div>
+                    <div> Listed User : <a href="./profile?id=<%=item.getSellerID()%>" ><%=item.getSellerID()%></a>                     
                     <div> Listed Date: <%=item.getDateListed()%> </div>
                 </div>
             </div>
