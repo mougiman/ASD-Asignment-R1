@@ -13,6 +13,8 @@ import com.mongodb.MongoClientURI;
 import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoCursor;
+import com.mongodb.client.model.Filters;
+import org.bson.conversions.Bson;
 
 public class MongoDBConnector {
     MongoDatabase shopDB = getMongoDB();
@@ -130,7 +132,7 @@ public class MongoDBConnector {
         return null;
     }
     
-    public User getUser(String ID){
+ public User getUser(String ID){
         for (Document doc : users.find()) {
                 String id = (String)(doc.get("id"));
             System.out.print(id + "------" + ID);
