@@ -1,11 +1,18 @@
-
 package asd.demo.model.dao;
+import static com.mongodb.client.model.Filters.and;
+import static com.mongodb.client.model.Filters.eq;
+
+import java.util.ArrayList;
+import java.util.List;
+import asd.demo.model.User;
+import asd.demo.model.Users;
 import org.bson.Document;
 import asd.demo.model.*;
 import com.mongodb.MongoClient;
 import com.mongodb.MongoClientURI;
 import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoCursor;
 
 public class MongoDBConnector {
     MongoDatabase shopDB = getMongoDB();
@@ -107,7 +114,64 @@ public class MongoDBConnector {
         }
         return userList;
     }
-    
+    public void add(User user) {
+		 MongoDatabase shopDB = getMongoDB();
+		List<Document> users = new ArrayList<>();
+		users.add(new Document("Username", user.getEmail())
+			.append("Password", user.getPassword())
+			.append("Name", user.getName())
+			.append("Phone", user.getPhone())
+                        .append("IsAdmin", user.getIsAdmin()));
+		MongoCollection<Document> userlist = shopDB.getCollection("Users"); 
+		userlist.insertMany(users);
+	}
+
+	public void showUsers() {
+		 MongoDatabase shopDB = getMongoDB();
+		MongoCollection<Document> userlist = shopDB.getCollection("Users");
+		try (MongoCursor<Document> cursor = userlist.find().iterator()) {
+			while (cursor.hasNext()) {
+				System.out.println(cursor.next().toJson());
+			}
+		}
+	}
+
+	/**
+	 * 查询用户
+	 * @return
+	 */
+	public Users loadUsers() {
+		 MongoDatabase shopDB = getMongoDB();
+		Users users = new Users();
+	  
+			MongoCollection<Document> userlist = shopDB
+					.getCollection("Users");
+			for (Document doc : userlist.find()) {
+				User user = new User((String)doc.get("Id"),
+                                        (String) doc.get("Name"),
+						(String) doc.get("Username"),
+						(String) doc.get("Password"), (String) doc.get("Phone"),(Boolean) doc.get("isAdmin"));
+				users.addUser(user);
+			}
+		return users;
+	}
+
+	/**
+	 * 指定的用户是否在数据库中
+	 * @param email
+	 * @param password
+	 * @return
+	 */
+	public User userExists(String email, String password) {
+		 MongoDatabase shopDB = getMongoDB();
+			MongoCollection<Document> userlist = shopDB.getCollection("Users");
+			Document doc = userlist.find(and(eq("Username", email), eq("Password", password))).first();
+                        if(doc ==null){
+                            return null;
+                        }
+			User user = new User((String)doc.get("Id"),(String) doc.get("Name"), (String) doc.get("Username"), (String) doc.get("Password"), (String) doc.get("Phone"),(Boolean) doc.get("isAdmin"));
+		return user;
+	}
 }
 
 
