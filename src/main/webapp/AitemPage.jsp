@@ -42,15 +42,15 @@
         <% 
             Item item = (Item) request.getAttribute("item");
          
-             
+             MongoDBConnector connector = new MongoDBConnector();
             String error = (String) request.getAttribute("err");
             LocalDate now =LocalDate.now();
         String date = now.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
           //  double bid =Double.parseDouble(request.getParameter("bid"));
             String b = request.getParameter("bid");
-            MongoDBConnector connector = new MongoDBConnector(); 
+            
         %> 
-        <form method="post"action="./item?id=<%=item.getID()%>" id ="page">
+        <form method="post" action="oo.jsp" id ="page">
         <div class="row">
         <div class="mainBox">
             <% if(error.length() > 0) { %>
@@ -58,10 +58,10 @@
             <%} else if (item.getExpDate().compareTo(date)<=0)
 { %>
                <p> this item is expired</p>
-         <a href="../home" >go to home page</a>
+         <a href="home" >go to home page</a>
+         <%}else if(b==null){ request.setAttribute("item", item);%>
 
-<%
-}else if( b == null){ %>
+
             <div class="col">
                 <h><%=item.getName()%></h>
                 <p></p>
@@ -71,10 +71,12 @@
                     <hr>
                     <div> Category: <%=item.getCategory()%> </div>
                     <div> Price: <%=item.getPrice()%> </div>
-                    <div> New bid <input type="text" name="bid" value = "0"></div>
+                    <div> bid want to add <input type="text" name="bid" value = "0"></div>
+                    <div> ItemID <input type="hidden" name="id" value = "<%=item.getID()%>"</div>
+                       <div> ItemID <input type="hidden" name="price" value = "<%=item.getPrice()%>"</div>
                     <div> Expiration Date: <%=item.getExpDate()%></div>
                     
-                    <button type="submit" value = "AitemPage"> Place bid Now! </button>
+                    <input type = submit value = "place bid">
             </div>
             <div class="col">
                 <div class="userBox">
@@ -85,15 +87,15 @@
             </div>
                 </div>
                 </form>
-            <% }else if( Double.parseDouble(b) <=item.getPrice() ){  %>
-               <p> you need to put a higher bid</p>
-         <a href="./item?id=<%=item.getID()%>" >place bid again</a>
-        <%} else{
-connector.changePrice(item.getID(),  Double.parseDouble(b));                           
+ 
+        <%}
+else if (item==null){
+
+ connector.changePrice(request.getParameter("id"),item.getPrice()+ Double.parseDouble(request.getParameter("bid")));   
 
         %>
          <p>Bid has been placed</p>
-         <a href="./item?id=<%=item.getID()%>" >back to homepage</a>
+         <a href="home" >back to homepage</a>
         <%}%>
     </body>
 </html>
