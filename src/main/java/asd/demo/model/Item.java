@@ -20,10 +20,11 @@ public class Item implements Serializable{
     private String category;
     private String expDate;
     private String sellerID;
+    private boolean ifAuc;
     private String image;
     
     public Item(String ID, String name, String dateListed, int stock, double price, 
-            String description, String category, String sellerID, String expDate, String image){
+            String description, String category, String sellerID, String expDate,boolean ifAuc, String image){
             
         this.ID = ID;
         this.name = name;
@@ -34,6 +35,7 @@ public class Item implements Serializable{
         this.category = category;
         this.expDate = expDate;
         this.sellerID = sellerID;
+        this.ifAuc=ifAuc;
         this.image = image;
     }
 
@@ -169,4 +171,6 @@ public class Item implements Serializable{
     public void setImage(String image) {
         this.image = image;
     }
+    public boolean ifAuc(){
+    return ifAuc;}
 }
