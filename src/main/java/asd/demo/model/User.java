@@ -3,7 +3,7 @@ package asd.demo.model;
 import java.io.Serializable;
 
 public class User  implements Serializable{
-
+    private String ID;
     private String name;
     private String email;
     private String password;
@@ -12,7 +12,8 @@ public class User  implements Serializable{
     public User() {
     }
 
-    public User(String name, String email, String password, String phone) {
+    public User(String ID,String name, String email, String password, String phone) {
+        this.ID = ID;
         this.name = name;
         this.email = email;
         this.password = password;
@@ -22,7 +23,12 @@ public class User  implements Serializable{
     public boolean match(String email){
         return this.email.equalsIgnoreCase(email.trim());
     }
-    
+    public String getID() {
+        return ID;
+    }
+    public void setID(String ID) {
+        this.ID = ID;
+    }
     public String getPhone() {
         return phone;
     }
