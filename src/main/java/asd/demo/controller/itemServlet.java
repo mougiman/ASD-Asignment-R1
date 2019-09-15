@@ -17,7 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 public class itemServlet extends HttpServlet {
    protected void doGet(HttpServletRequest request, HttpServletResponse response)  throws ServletException, IOException{
        MongoDBConnector connector = new MongoDBConnector();
-       //Gets item id from url 
+       //Gets item id from url        
        String id = request.getParameter("id");
        Item item = connector.getItem(id);
        String errMsg = "";

@@ -35,8 +35,7 @@
                         <option value="null"> Sort By </option>
                         <option value="lowToHigh"> Price - Low to High </option>
                         <option value="highToLow"> Price - High to low </option>
-                    </select>
-                    
+                    </select>       
                 </form>
             </div>
             <div class="row">
@@ -68,4 +67,5 @@
             </div> 
         </div>
     </body>
+    
 </html>

@@ -13,10 +13,13 @@ public class MongoDBConnector {
     MongoCollection<Document> users = shopDB.getCollection("Users");
 
     public MongoDatabase getMongoDB(){
-        MongoClientURI uri = new MongoClientURI("mongodb://weize:Holyshit1.@asd-assignment-shard-00-00-5im26.gcp.mongodb.net:27017,asd-assignment-shard-00-01-5im26.gcp.mongodb.net:27017,asd-assignment-shard-00-02-5im26.gcp.mongodb.net:27017/test?ssl=true&replicaSet=ASD-Assignment-shard-0&authSource=admin&socketTimeoutMS=360000&connectTimeoutMS=360000&retryWrites=true&w=majority");
-        MongoClient client = new MongoClient(uri);
-        MongoDatabase db = client.getDatabase("ASD");
-        return db;
+        if(shopDB == null){
+            MongoClientURI uri = new MongoClientURI("mongodb://weize:Holyshit1.@asd-assignment-shard-00-00-5im26.gcp.mongodb.net:27017,asd-assignment-shard-00-01-5im26.gcp.mongodb.net:27017,asd-assignment-shard-00-02-5im26.gcp.mongodb.net:27017/test?ssl=true&replicaSet=ASD-Assignment-shard-0&authSource=admin&retryWrites=true&w=majority&maxIdleTimeMS=30000");
+            MongoClient client = new MongoClient(uri);
+            MongoDatabase db = client.getDatabase("ASD");
+            return db;
+        }
+        return shopDB;
     }
 
     public int add(int a, int b) {
@@ -93,6 +96,7 @@ public class MongoDBConnector {
         }
         return userList;
     }
+    
 }
 
 

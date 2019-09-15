@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="1" failures="1" name="asd.demo.test.UTest" time="0.003" errors="0" skipped="0">
+<testsuite tests="1" failures="1" name="asd.demo.test.UTest" time="0.081" errors="0" skipped="0">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="C:\Program Files (x86)\Java\jdk1.8.0_201\jre\bin"/>
@@ -62,7 +62,7 @@
     <property name="sun.desktop" value="windows"/>
     <property name="sun.cpu.isalist" value="pentium_pro+mmx pentium_pro pentium+mmx pentium i486 i386 i86"/>
   </properties>
-  <testcase classname="asd.demo.test.UTest" name="testMongoDBConnect" time="0.001">
+  <testcase classname="asd.demo.test.UTest" name="testMongoDBConnect" time="0.006">
     <failure message="Cannot establish connection to MDB" type="java.lang.AssertionError">java.lang.AssertionError: Cannot establish connection to MDB
 	at org.junit.Assert.fail(Assert.java:88)
 	at org.junit.Assert.assertTrue(Assert.java:41)
@@ -100,48 +100,6 @@
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:68)
 </failure>
     <system-out>
-  Scenario: Successful view of items with &quot;car&quot; category &amp;#27;[90m# SearchFeature.feature:12&amp;#27;[0m
-    &amp;#27;[33mWhen &amp;#27;[0m&amp;#27;[33mI fill in &quot;Searchbox&quot; with &quot;car&quot;&amp;#27;[0m
-    &amp;#27;[33mAnd &amp;#27;[0m&amp;#27;[33mI select the &quot;Category&quot; radio button&amp;#27;[0m
-    &amp;#27;[33mThen &amp;#27;[0m&amp;#27;[33mI should see items with category &quot;car&quot;&amp;#27;[0m
-
-  Scenario Outline: Failed to view items with &quot;car&quot; category using wrong category &amp;#27;[90m# SearchFeature.feature:17&amp;#27;[0m
-    &amp;#27;[36mWhen &amp;#27;[0m&amp;#27;[36mI fill &quot;Searchbox&quot; with nothing&amp;#27;[0m
-    &amp;#27;[36mAnd &amp;#27;[0m&amp;#27;[36mI select the &quot;Category&quot; radio button&amp;#27;[0m
-    &amp;#27;[36mThen &amp;#27;[0m&amp;#27;[36mI should see no items&amp;#27;[0m
-
-1 Scenarios (&amp;#27;[33m1 undefined&amp;#27;[0m)
-4 Steps (&amp;#27;[33m4 undefined&amp;#27;[0m)
-0m0.000s
-
-
-You can implement missing steps with the snippets below:
-
-@Given(&quot;^I am on the home page$&quot;)
-public void i_am_on_the_home_page() throws Throwable {
-    // Write code here that turns the phrase above into concrete actions
-    throw new PendingException();
-}
-
-@When(&quot;^I fill in \&quot;([^\&quot;]*)\&quot; with \&quot;([^\&quot;]*)\&quot;$&quot;)
-public void i_fill_in_with(String arg1, String arg2) throws Throwable {
-    // Write code here that turns the phrase above into concrete actions
-    throw new PendingException();
-}
-
-@When(&quot;^I select the \&quot;([^\&quot;]*)\&quot; radio button$&quot;)
-public void i_select_the_radio_button(String arg1) throws Throwable {
-    // Write code here that turns the phrase above into concrete actions
-    throw new PendingException();
-}
-
-@Then(&quot;^I should see items with category \&quot;([^\&quot;]*)\&quot;$&quot;)
-public void i_should_see_items_with_category(String arg1) throws Throwable {
-    // Write code here that turns the phrase above into concrete actions
-    throw new PendingException();
-}
-
-
 &lt;-- Starting Unit test --&gt;
 </system-out>
   </testcase>

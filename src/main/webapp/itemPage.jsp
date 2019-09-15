@@ -33,7 +33,7 @@
                     <div> <%=item.getDescription()%> </div>
                     <hr>
                     <div> Category: <%=item.getCategory()%> </div>
-                    <div> Price: <%=item.getPrice()%> </div>
+                    <div> Price: $<%=item.getPrice()%> </div>
                     <div> Expiration Date: <%=item.getExpDate()%></div>
                     <button type="button"> Buy Now! </button>
             </div>

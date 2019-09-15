@@ -21,11 +21,14 @@
         "steps": [
           {
             "result": {
-              "status": "undefined"
+              "duration": 37794228100,
+              "status": "passed"
             },
             "line": 10,
             "name": "I am on the home page",
-            "match": {},
+            "match": {
+              "location": "SearchFeature.i_am_on_the_home_page()"
+            },
             "keyword": "Given "
           }
         ]
@@ -40,29 +43,60 @@
         "steps": [
           {
             "result": {
-              "status": "undefined"
+              "duration": 3064800,
+              "status": "passed"
             },
             "line": 13,
             "name": "I fill in \"Searchbox\" with \"car\"",
-            "match": {},
+            "match": {
+              "arguments": [
+                {
+                  "val": "Searchbox",
+                  "offset": 11
+                },
+                {
+                  "val": "car",
+                  "offset": 28
+                }
+              ],
+              "location": "SearchFeature.i_fill_in_with(String,String)"
+            },
             "keyword": "When "
           },
           {
             "result": {
-              "status": "undefined"
+              "duration": 55300,
+              "status": "passed"
             },
             "line": 14,
             "name": "I select the \"Category\" radio button",
-            "match": {},
+            "match": {
+              "arguments": [
+                {
+                  "val": "Category",
+                  "offset": 14
+                }
+              ],
+              "location": "SearchFeature.i_select_the_radio_button(String)"
+            },
             "keyword": "And "
           },
           {
             "result": {
-              "status": "undefined"
+              "duration": 72500,
+              "status": "passed"
             },
             "line": 15,
             "name": "I should see items with category \"car\"",
-            "match": {},
+            "match": {
+              "arguments": [
+                {
+                  "val": "car",
+                  "offset": 34
+                }
+              ],
+              "location": "SearchFeature.i_should_see_items_with_category(String)"
+            },
             "keyword": "Then "
           }
         ]
