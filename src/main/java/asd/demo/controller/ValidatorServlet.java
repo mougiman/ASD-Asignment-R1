@@ -18,17 +18,18 @@ public class ValidatorServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+          System.out.println("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");       
         HttpSession session = request.getSession();
         Validator validator = new Validator();
         String email = request.getParameter("email");
         String password = request.getParameter("password");
+        System.out.println("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"+email);       
         User user = null;
         
         String adminemail = (String)session.getAttribute("adminemail");
         String adminpass = (String)session.getAttribute("adminpassword");
         MongoDBConnector connector = new MongoDBConnector();
 
-  
         if (!validator.validateEmail(email)) {
             session.setAttribute("emailErr", "Incorrect email format");    
 
@@ -53,3 +54,4 @@ public class ValidatorServlet extends HttpServlet {
             }
         }
     }
+}
