@@ -28,20 +28,28 @@ public class ValidatorServlet extends HttpServlet {
         String adminpass = (String)session.getAttribute("adminpassword");
         MongoDBConnector connector = new MongoDBConnector();
 
+  
         if (!validator.validateEmail(email)) {
-            session.setAttribute("emailErr", "Incorrect email format");            
-            request.getRequestDispatcher("index.jsp").include(request, response);
+            session.setAttribute("emailErr", "Incorrect email format");    
+
+            request.getRequestDispatcher("login.jsp?emailErr=1").include(request, response);
         } else if (!validator.validatePassword(password)) {
-            session.setAttribute("passErr", "Incorrect password format");
-            request.getRequestDispatcher("index.jsp").include(request, response);
+           session.setAttribute("passErr", "Incorrect password format");
+            request.getRequestDispatcher("login.jsp?passErr=1").include(request, response);
         } else {
+             user = connector.userExists(email, password);
+             if(user == null){
+                 session.setAttribute("existErr", "User does not exist!");
+                request.getRequestDispatcher("login.jsp?nouser=1").include(request, response);
+             }else{
+                 session.setAttribute("userLogin", user);
+                 request.getRequestDispatcher("header.jsp").include(request, response);
+             }
             try {
-               
-                request.getRequestDispatcher("main.jsp").include(request, response);
+              
+                
             } catch (NullPointerException ex) {
-                session.setAttribute("existErr", "User does not exist!");
-                request.getRequestDispatcher("main.jsp").include(request, response);
+                
             }
         }
     }
-}
