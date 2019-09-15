@@ -164,7 +164,7 @@
                     <input type="text" id="num" name="phone">
                 </div>
                 <input type="submit" value="Register">
-                <input type = "button" onclick="window.location.href='WEB-INF/index.jsp'" value = "Cancle"/>
+                <input type = "button" onclick="window.location.href='./'" value = "Cancle"/>
                 </form>
             </div>
     </body>
