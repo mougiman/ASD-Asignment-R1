@@ -33,13 +33,13 @@
                     <div> <%=item.getDescription()%> </div>
                     <hr>
                     <div> Category: <%=item.getCategory()%> </div>
-                    <div> Price: $<%=item.getPrice()%> </div>
+                    <div> Price: <%=item.getPrice()%> </div>
                     <div> Expiration Date: <%=item.getExpDate()%></div>
                     <button type="button"> Buy Now! </button>
             </div>
             <div class="col">
                 <div class="userBox">
-                    <div><u> User Info </u><div>
+                    <div> User Info <div>
                     <div> Listed User: <a href="salesHistory.jsp"> <%=item.getSellerID()%> </a></div>
                     <div> Listed Date: <%=item.getDateListed()%> </div>
                 </div>
