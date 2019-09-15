@@ -36,6 +36,40 @@ public class MongoDBConnector {
     public int subtract(int a, int b) {
         return a - b;
     }
+	     public void changePrice(String itemId,double price)
+     {
+          Bson filter = Filters.eq("id", itemId);
+   
+    Document document = new Document("$set", new Document("price", price));
+   
+    dbItems.updateOne(filter, document);
+
+     
+       
+}
+     public void addAucItem(String id, String name, String datelisted, int quantity,  Double price, String desc, String category, String sellerId,String expdate,String CusID,boolean ifAuc)
+     {
+   
+
+     
+   
+ Document document = new Document("id", id).
+                   append("name", name).
+                    append("datelisted", datelisted).
+                    append("stock", quantity).
+                    
+                   append("price", price).
+                    append("desc", desc).
+                    append("category", category).
+                    append("sellerId", sellerId).
+                    append("expdate", expdate).
+                    append("CusID", CusID).
+                    append("ifAuc", true).
+                    append("image", "https://m.media-amazon.com/images/I/716Tk-ycvAL._UY560_.jpg");
+   
+ 
+         dbItems.insertOne(document); 
+     }
     
     public ItemList getItemList(){
         ItemList items = new ItemList();
