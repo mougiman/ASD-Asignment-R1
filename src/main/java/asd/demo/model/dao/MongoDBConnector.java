@@ -169,6 +169,17 @@ public class MongoDBConnector {
 			}
 		}
 	}
+	
+	public void addUser(String id, String name, String email, String password, String phone){
+         
+		Document document = new Document("id", id).
+                    append("name", name).
+                    append("email", email).
+                    append("password", password).
+                    append("phone", phone);
+ 
+         users.insertOne(document); 
+     }
 
 	/**
 	 * 查询用户
