@@ -182,7 +182,7 @@ public class MongoDBConnector {
      }
 
 	/**
-	 * 查询用户
+	 
 	 * @return
 	 */
 	public Users loadUsers() {
@@ -202,7 +202,7 @@ public class MongoDBConnector {
 	}
 
 	/**
-	 * 指定的用户是否在数据库中
+	 
 	 * @param email
 	 * @param password
 	 * @return
@@ -210,11 +210,11 @@ public class MongoDBConnector {
 	public User userExists(String email, String password) {
 		 MongoDatabase shopDB = getMongoDB();
 			MongoCollection<Document> userlist = shopDB.getCollection("Users");
-			Document doc = userlist.find(and(eq("Username", email), eq("Password", password))).first();
+			Document doc = userlist.find(and(eq("email", email), eq("password", password))).first();
                         if(doc ==null){
                             return null;
                         }
-			User user = new User((String)doc.get("Id"),(String) doc.get("Name"), (String) doc.get("Username"), (String) doc.get("Password"), (String) doc.get("Phone"),(Boolean) doc.get("isAdmin"));
+			User user = new User((String)doc.get("id"),(String) doc.get("name"), (String) doc.get("email"), (String) doc.get("password"), (String) doc.get("phone"),(Boolean) doc.get("isAdmin"));
 		return user;
 	}
 }
