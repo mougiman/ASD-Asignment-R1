@@ -36,7 +36,7 @@
     <servlet-mapping>
         <servlet-name>sellerController</servlet-name>
         <url-pattern>/profile/*</url-pattern>
-    </servlet-mapping>	
+    </servlet-mapping>
     <servlet>
         <servlet-name>adminPageController</servlet-name>
         <servlet-class>asd.demo.controller.adminPageServlet</servlet-class>
