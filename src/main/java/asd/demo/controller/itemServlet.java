@@ -1,4 +1,4 @@
-
+    
 package asd.demo.controller;
 import asd.demo.model.*;
 import asd.demo.model.dao.MongoDBConnector;
@@ -17,7 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 public class itemServlet extends HttpServlet {
    protected void doGet(HttpServletRequest request, HttpServletResponse response)  throws ServletException, IOException{
        MongoDBConnector connector = new MongoDBConnector();
-       //Gets item id from url        
+       //Gets item id from url 
        String id = request.getParameter("id");
        Item item = connector.getItem(id);
        String errMsg = "";
@@ -25,6 +25,14 @@ public class itemServlet extends HttpServlet {
        if(item == null){
            errMsg = "Item not found, Please look for another Item.";
            request.setAttribute("err", errMsg);
+       }
+       else if(item.ifAuc() ==true){
+        request.setAttribute("item", item);
+       
+        
+        
+        
+        request.getRequestDispatcher("AitemPage.jsp").forward(request, response);
        }
        else{
             request.setAttribute("item", item);
