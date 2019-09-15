@@ -3,7 +3,7 @@
     "comments": [
       {
         "line": 1,
-        "value": "# MLabLogin Feature"
+        "value": "# SearchFeature Feature"
       },
       {
         "line": 2,
@@ -14,7 +14,7 @@
     "elements": [
       {
         "line": 9,
-        "name": "User navigates to mLab login page",
+        "name": "User navigates to Shop and Buy homepage",
         "description": "",
         "type": "background",
         "keyword": "Background",
@@ -24,7 +24,7 @@
               "status": "undefined"
             },
             "line": 10,
-            "name": "I am on mLab login page",
+            "name": "I am on the home page",
             "match": {},
             "keyword": "Given "
           }
@@ -32,9 +32,9 @@
       },
       {
         "line": 12,
-        "name": "Successful login to mLab",
+        "name": "Successful view of items with \"car\" category",
         "description": "",
-        "id": "mlabloginfeature;successful-login-to-mlab",
+        "id": "searchfeature;successful-view-of-items-with-\"car\"-category",
         "type": "scenario",
         "keyword": "Scenario",
         "steps": [
@@ -43,7 +43,7 @@
               "status": "undefined"
             },
             "line": 13,
-            "name": "I fill in \"Username\" with \"\u003cmLab username\u003e\"",
+            "name": "I fill in \"Searchbox\" with \"car\"",
             "match": {},
             "keyword": "When "
           },
@@ -52,7 +52,7 @@
               "status": "undefined"
             },
             "line": 14,
-            "name": "I fill in \"Password\" with \"\u003cmLab Password\u003e\"",
+            "name": "I select the \"Category\" radio button",
             "match": {},
             "keyword": "And "
           },
@@ -61,290 +61,22 @@
               "status": "undefined"
             },
             "line": 15,
-            "name": "I should see \"mLab Connection\" green",
+            "name": "I should see items with category \"car\"",
             "match": {},
             "keyword": "Then "
-          }
-        ]
-      },
-      {
-        "line": 9,
-        "name": "User navigates to mLab login page",
-        "description": "",
-        "type": "background",
-        "keyword": "Background",
-        "steps": [
-          {
-            "result": {
-              "status": "undefined"
-            },
-            "line": 10,
-            "name": "I am on mLab login page",
-            "match": {},
-            "keyword": "Given "
-          }
-        ]
-      },
-      {
-        "line": 23,
-        "name": "Failed login to mLab using wrong credentials",
-        "description": "",
-        "id": "mlabloginfeature;failed-login-to-mlab-using-wrong-credentials;;2",
-        "type": "scenario",
-        "keyword": "Scenario Outline",
-        "steps": [
-          {
-            "result": {
-              "status": "undefined"
-            },
-            "line": 18,
-            "name": "I fill in \"Username\" with \"Test\"",
-            "match": {},
-            "matchedColumns": [
-              0
-            ],
-            "keyword": "When "
-          },
-          {
-            "result": {
-              "status": "undefined"
-            },
-            "line": 19,
-            "name": "I fill in \"Password\" with \"!23\"",
-            "match": {},
-            "matchedColumns": [
-              1
-            ],
-            "keyword": "And "
-          },
-          {
-            "result": {
-              "status": "undefined"
-            },
-            "line": 20,
-            "name": "I should see \"mLab Connection\" red",
-            "match": {},
-            "keyword": "Then "
-          }
-        ],
-        "tags": [
-          {
-            "line": 3,
-            "name": "@MLabLoginProfile"
-          }
-        ]
-      },
-      {
-        "line": 9,
-        "name": "User navigates to mLab login page",
-        "description": "",
-        "type": "background",
-        "keyword": "Background",
-        "steps": [
-          {
-            "result": {
-              "status": "undefined"
-            },
-            "line": 10,
-            "name": "I am on mLab login page",
-            "match": {},
-            "keyword": "Given "
-          }
-        ]
-      },
-      {
-        "line": 24,
-        "name": "Failed login to mLab using wrong credentials",
-        "description": "",
-        "id": "mlabloginfeature;failed-login-to-mlab-using-wrong-credentials;;3",
-        "type": "scenario",
-        "keyword": "Scenario Outline",
-        "steps": [
-          {
-            "result": {
-              "status": "undefined"
-            },
-            "line": 18,
-            "name": "I fill in \"Username\" with \"Test\"",
-            "match": {},
-            "matchedColumns": [
-              0
-            ],
-            "keyword": "When "
-          },
-          {
-            "result": {
-              "status": "undefined"
-            },
-            "line": 19,
-            "name": "I fill in \"Password\" with \"\"",
-            "match": {},
-            "matchedColumns": [
-              1
-            ],
-            "keyword": "And "
-          },
-          {
-            "result": {
-              "status": "undefined"
-            },
-            "line": 20,
-            "name": "I should see \"mLab Connection\" red",
-            "match": {},
-            "keyword": "Then "
-          }
-        ],
-        "tags": [
-          {
-            "line": 3,
-            "name": "@MLabLoginProfile"
-          }
-        ]
-      },
-      {
-        "line": 9,
-        "name": "User navigates to mLab login page",
-        "description": "",
-        "type": "background",
-        "keyword": "Background",
-        "steps": [
-          {
-            "result": {
-              "status": "undefined"
-            },
-            "line": 10,
-            "name": "I am on mLab login page",
-            "match": {},
-            "keyword": "Given "
-          }
-        ]
-      },
-      {
-        "line": 25,
-        "name": "Failed login to mLab using wrong credentials",
-        "description": "",
-        "id": "mlabloginfeature;failed-login-to-mlab-using-wrong-credentials;;4",
-        "type": "scenario",
-        "keyword": "Scenario Outline",
-        "steps": [
-          {
-            "result": {
-              "status": "undefined"
-            },
-            "line": 18,
-            "name": "I fill in \"Username\" with \"\"",
-            "match": {},
-            "matchedColumns": [
-              0
-            ],
-            "keyword": "When "
-          },
-          {
-            "result": {
-              "status": "undefined"
-            },
-            "line": 19,
-            "name": "I fill in \"Password\" with \"123\"",
-            "match": {},
-            "matchedColumns": [
-              1
-            ],
-            "keyword": "And "
-          },
-          {
-            "result": {
-              "status": "undefined"
-            },
-            "line": 20,
-            "name": "I should see \"mLab Connection\" red",
-            "match": {},
-            "keyword": "Then "
-          }
-        ],
-        "tags": [
-          {
-            "line": 3,
-            "name": "@MLabLoginProfile"
-          }
-        ]
-      },
-      {
-        "line": 9,
-        "name": "User navigates to mLab login page",
-        "description": "",
-        "type": "background",
-        "keyword": "Background",
-        "steps": [
-          {
-            "result": {
-              "status": "undefined"
-            },
-            "line": 10,
-            "name": "I am on mLab login page",
-            "match": {},
-            "keyword": "Given "
-          }
-        ]
-      },
-      {
-        "line": 26,
-        "name": "Failed login to mLab using wrong credentials",
-        "description": "",
-        "id": "mlabloginfeature;failed-login-to-mlab-using-wrong-credentials;;5",
-        "type": "scenario",
-        "keyword": "Scenario Outline",
-        "steps": [
-          {
-            "result": {
-              "status": "undefined"
-            },
-            "line": 18,
-            "name": "I fill in \"Username\" with \"\"",
-            "match": {},
-            "matchedColumns": [
-              0
-            ],
-            "keyword": "When "
-          },
-          {
-            "result": {
-              "status": "undefined"
-            },
-            "line": 19,
-            "name": "I fill in \"Password\" with \"\"",
-            "match": {},
-            "matchedColumns": [
-              1
-            ],
-            "keyword": "And "
-          },
-          {
-            "result": {
-              "status": "undefined"
-            },
-            "line": 20,
-            "name": "I should see \"mLab Connection\" red",
-            "match": {},
-            "keyword": "Then "
-          }
-        ],
-        "tags": [
-          {
-            "line": 3,
-            "name": "@MLabLoginProfile"
           }
         ]
       }
     ],
-    "name": "MLabLoginFeature",
-    "description": "As a student of ASD subject\r\nI want to login my ASD mLab account using my admin credentials\r\nIn order to connect to mLab cloud database",
-    "id": "mlabloginfeature",
+    "name": "SearchFeature",
+    "description": "As a user of Shop and Buy\r\nI want to browse items by category\r\nIn order to find my items easier",
+    "id": "searchfeature",
     "keyword": "Feature",
-    "uri": "MLabLoginFeature.feature",
+    "uri": "SearchFeature.feature",
     "tags": [
       {
         "line": 3,
-        "name": "@MLabLoginProfile"
+        "name": "@SearchFeatureScenario"
       }
     ]
   }

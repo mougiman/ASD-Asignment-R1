@@ -39,7 +39,7 @@
             </div>
             <div class="col">
                 <div class="userBox">
-                    <div> User Info <div>
+                    <div><u> User Info </u><div>
                     <div> Listed User: <a href="salesHistory.jsp"> <%=item.getSellerID()%> </a></div>
                     <div> Listed Date: <%=item.getDateListed()%> </div>
                 </div>

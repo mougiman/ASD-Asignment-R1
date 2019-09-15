@@ -40,35 +40,32 @@
                 </form>
             </div>
             <div class="row">
-                <div class="itemList">
-                    
-                    <% if(!error.equals("")){ %>
+                <% if(!error.equals("")){ %>
                         <%=error%>
                     <% } else {%>
-                        
-                        <% if(!searched.equals((""))) { %>
+                    <% if(!searched.equals((""))) { %>
                         <div class="row">
                         <p> Searched for:</p>
-                        <h1><%=searched%></h1>  
-                        </div>
-                        <% } %>
-                        <div class="row">
-                            <%for (int i = 0; i < items.size(); i++) { Item item = items.get(i);%>
-                            <a href="./item?id=<%=item.getID()%>" class="itemCard">
-                                <div class="imageContainer">
-                                    <span class="helper"></span>
-                                    <img src="<%=item.getImage()%>"/>
-                                </div>
-                                <br>
-                                 <%=item.getName()%>
-                                 $<%=item.getPrice()%>
-                            </a>
-                        </div>
+                        <h1><%=searched%></h1>
+                        <div class="vl"></div>
                     <% }} %>
+            </div> 
+            <div class="row">
+                <div class="itemList">
+                    <%for (int i = 0; i < items.size(); i++) { Item item = items.get(i);%>
+                    <a href="./item?id=<%=item.getID()%>" class="itemCard">
+                        <div class="imageContainer">
+                            <span class="helper"></span>
+                            <img src="<%=item.getImage()%>"/>
+                        </div>
+                        <br>
+                         <%=item.getName()%>
+                         $<%=item.getPrice()%>
+                    </a>
+                    <% } %>
                 </div>        
             </div>
-        </div> 
-        <%--<jsp:include page="logout.jsp"/>--%>
+            </div> 
         </div>
     </body>
 </html>

@@ -41,6 +41,7 @@ public class HomeController extends HttpServlet {
                 items = item.getList();
                 request.setAttribute("searched", query);
                 if(items.isEmpty()){
+                   //Error messages
                    err = ("There are no items that match the name \"" + query + "\"");
                    request.setAttribute("error", err);                   
                 }
@@ -50,6 +51,7 @@ public class HomeController extends HttpServlet {
                 items = item.getList();
                 request.setAttribute("searched", query);
                 if(items.isEmpty()){
+                   //Error messages
                    err = ("There are no items that match the category \"" + query + "\"");
                    request.setAttribute("error", err);    
                 }
@@ -76,5 +78,3 @@ public class HomeController extends HttpServlet {
         request.getRequestDispatcher("WEB-INF/index.jsp").forward(request, response);
     }
 }
-
- 
