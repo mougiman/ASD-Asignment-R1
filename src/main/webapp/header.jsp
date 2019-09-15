@@ -37,7 +37,7 @@
         </span>
         <span class="rightalign">
             <% if (user != null) {%>
-                <a href="myAccount.jsp"> <%=user%>'s Profile</a>
+                <a href="myAccount.jsp"> <%=user.getEmail()%>'s Profile</a>
                 <% if (true /*user.isAdmin() - Function does not exist yet*/) { %>
                     <a href="adminPage.jsp">Administration</a>
                 <% } %>
