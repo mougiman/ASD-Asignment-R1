@@ -59,24 +59,7 @@
                          </td>    
                     </tr> 
 
-                    </table>
-                       <div>
-            <h2>User Ratings</h2>
-            <a href="review.jsp">Leave a Rating</a>
-            <%
-                ArrayList<Rating> ratings = connector.getUserRatings(id);
-                for (Rating rating : ratings) {
-            %>
-            <div>
-                <h3><%=rating.getTitle()%></h3>
-                <h5><%=rating.getScore()%>/5</h5>
-                <p>by <%=rating.getUserID()%></p>
-                <p><%=rating.getDesc()%></p>
-            </div>
-            <%
-                }
-            %>
-        </div> 
+                    </table>       
                 </div>
 <% } %>
         </div> <!-- col-sm-12 -->
