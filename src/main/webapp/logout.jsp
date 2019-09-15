@@ -16,7 +16,7 @@
        <%=session.getAttribute("userEmail")%><br/>
         
          <%
-             response.setHeader("refresh","2;URL=header.jsp");
+             response.setHeader("refresh","0;URL=header.jsp");
              session.invalidate();
              %>
     </body>
