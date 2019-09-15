@@ -89,6 +89,17 @@ public class MongoDBConnector {
         return null;
     }
     
+     public User getUser(String ID){
+        for (Document doc : users.find()) {
+                String id = (String)(doc.get("id"));
+            System.out.print(id + "------" + ID);
+            if(ID.equals(ID)){
+                return (new User((String) doc.get("id"), (String) doc.get("name"), (String) doc.get("email"),(String) doc.get("password"), (String) doc.get("phone"),(boolean) doc.get("isAdmin")));
+            }
+        }
+        return null;
+    }
+    
     public Users getUserList(){
         Users userList = new Users();
         for (Document doc : users.find()){
