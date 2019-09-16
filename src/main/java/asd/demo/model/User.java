@@ -8,17 +8,15 @@ public class User  implements Serializable{
     private String email;
     private String password;
     private String phone;
-    private Boolean isAdmin;
 
     public User() {
     }
 
-    public User(String name, String email, String password, String phone, Boolean isAdmin) {
+    public User(String name, String email, String password, String phone) {
         this.name = name;
         this.email = email;
         this.password = password;
         this.phone = phone;
-        this.isAdmin = isAdmin;
     }
 
     public boolean match(String email){
@@ -55,12 +53,5 @@ public class User  implements Serializable{
     public void setPassword(String password) {
         this.password = password;
     }
-    
-    public Boolean getIsAdmin() {
-        return isAdmin;
-    }
 
-    public void setIsAdmin(Boolean isAdmin) {
-        this.isAdmin = isAdmin;
-    }
 }
