@@ -8,46 +8,59 @@
 <%@page import="java.time.LocalDate"%>
 <%@page import="asd.demo.model.dao.MongoDBConnector"%>
 <%@page import="java.util.Random"%>
-<%@page import="asd.demo.model.dao.DBManager"%>
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>       
-    
-
+<html lang="en">       
     <head>
-  <script type="text/javascript" src="<%=request.getContextPath()%>/validate/jquery-1.6.2.min.js"></script>
-        <script type="text/javascript" src="<%=request.getContextPath()%>/validate/jquery.validate.min.js"></script>
-        <script type="text/javascript" src="<%=request.getContextPath()%>/validate/jquery.metadata.min.js"></script>
-        <script type="text/javascript" src="<%=request.getContextPath()%>/validate/messages_zh.js"></script>
+         <meta charset=UTF-8">
+        <title>List an Item</title>
+        <link rel="stylesheet" href="css/ASDStyle.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script type=text/javascript> type="text/javascript"></script>
+        <script src ="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.1/dist/jquery.validate.js" type="text/javascript"></script>      
         <script type="text/javascript">
- $(document).ready(function(){        
-          $('#auctionform').validate({ 
-            rules:{ 
-                expdate:{
-                    
-                    required: true, 
-                    compareDate:"#expdate"
-                },
-                itemName:{
-                    required:true
-                }
-            },
-               messages:{ 
-                expdate:{ 
-                    compareDate: "wrong time" 
-                }
-            }
-        });
-      //  jQuery.validator.addMethods ("expdate" ,function(value,element) { 
-  
+        
+<script>
+            $(document).ready(function(){
+                $('#auctionform').validate({
+                    rules:{
+                        itemName:{
+                            required: true,
+                            textonly: true,
+                            maxlength: 20
+                        },
+                       itemC:{
+                            required: true
+                     
+                        },
+                       itemDesc:{
+                            required:true
+                       
+                       },
+                       itemQ:{
+                           required:true,
+                            digits: true
+                           
+                         
+                       },
+                       itemPrice:{
+                           required: true,
+                           digits: true
+                        
+                       }
+                   }
+                
+       
+                });
+                
+            });
 
-          
-        //    return false; 
-      //  };
-    });
+        </script>
 
-  
-  </script>
+
+
+
 
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>List an Item</title>
@@ -62,7 +75,7 @@
         String expdate = request.getParameter("expdate");
 
   String itemName = request.getParameter("itemName");
-            if (itemName == null) {
+            if (itemName == null ) {
                
             %>
 
@@ -84,7 +97,7 @@
                         <p>Category:</p>
                     </td>
                     <td>
-                        <input type="text" name="itemCategory">
+                        <input type="text" name="itemC">
                     </td>
                 </tr>
                 <tr>
@@ -101,7 +114,7 @@
                         <p>Quantity:</p>
                     </td>
                     <td>
-                        <input type="text" name="itemQuantity">
+                        <input type="text" name="itemQ">
                     </td>
                 </tr>                
                 <tr>
@@ -135,23 +148,26 @@
         <p><%=itemName%>  Has a wrong time</p>
         <a href="Auction.jsp">Auction again</a>
         <%
-}else {
+}
+else {
 
-            String itemCategory = request.getParameter("itemCategory");
+            String itemCategory = request.getParameter("itemC");
             String itemDesc = request.getParameter("itemDesc");
            
             Double itemPrice = Double.parseDouble(request.getParameter("itemPrice"));
             String itemDateListed = "" + java.time.LocalDate.now();
-            int itemQuantity = Integer.parseInt(request.getParameter("itemQuantity"));
+            int itemQuantity = Integer.parseInt(request.getParameter("itemQ"));
             String expdate1 = request.getParameter("expdate");
            
             String itemSellerID = "11111111";
             Random rand = new Random();
             String itemID = "" + rand.nextInt(999999999);
+            boolean ifAuc = true;
+
             
             
 
-            connector.addAucItem(itemID, itemName, itemDateListed, itemQuantity,  itemPrice, itemDesc, itemCategory,itemSellerID,  expdate1, null);
+            connector.addAucItem(itemID, itemName, itemDateListed, itemQuantity,  itemPrice, itemDesc, itemCategory,itemSellerID,  expdate1, null, ifAuc);
         %>
         <p><%=itemName%> has been Auctioned</p>
         <a href="Auction.jsp">Auction another Product</a>
